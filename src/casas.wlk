@@ -1,15 +1,14 @@
 import habitaciones.*
 
-class Hogar {
-
-	var habitaciones = #{}
+class Casa {	
+	const listaDeHabitaciones = #{}
 
 	method agregarHabitaciones() {
-		habitaciones.add()
+		listaDeHabitaciones.add()
 	}
 
 	method eliminarHabitaciones() {
-		habitaciones.remove()
+		listaDeHabitaciones.remove()
 	}
 
 }

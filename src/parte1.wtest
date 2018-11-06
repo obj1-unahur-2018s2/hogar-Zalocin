@@ -1,0 +1,52 @@
+import personas.*
+import familias.*
+import habitaciones.*
+import casas.*
+
+
+
+describe "tests parte1" {
+	var persona1 = new Persona()
+	var persona2 = new Persona()
+	
+	var living = new UsoGeneral()
+	var banio = new Banio()
+	var dormitorio = new Dormitorio()
+	var cocina = new Cocina()
+	
+	fixture {
+		persona1.edad(3)
+		persona2.edad(21)
+		
+		persona2.noTieneHabilidadesDeCocina()
+		persona2.tieneHabilidadesDeCocina()
+	}
+	
+	
+	
+
+	test "puntosDeConfortUsoGeneral" {
+		assert.equals(10, living.nivelDeConfort(persona1))
+		assert.equals(10, living.nivelDeConfort(persona2))
+	}
+	
+	test "puntosDeConfortBanio" {
+		assert.equals(10+2, banio.nivelDeConfort(persona1))
+		assert.equals(10+4, banio.nivelDeConfort(persona2))
+	}
+	
+	test "puntosDeConfortDormitorio" {
+		dormitorio.agregarDuenio(persona2)
+		assert.equals(10, dormitorio.nivelDeConfort(persona1))
+		assert.equals(10 + 10/1, dormitorio.nivelDeConfort(persona2))
+		
+		dormitorio.agregarDuenio(persona1)
+		assert.equals(10 + 10/2, dormitorio.nivelDeConfort(persona1))
+		assert.equals(10 + 10/2, dormitorio.nivelDeConfort(persona2))
+	}
+	
+	test "puntosDeConfortCocina" {
+		assert.equals(10, cocina.nivelDeConfort(persona1))
+		assert.equals(10 + 20*0.1, cocina.nivelDeConfort(persona2))
+	}
+}
